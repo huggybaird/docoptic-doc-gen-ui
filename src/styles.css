@@ -1,0 +1,13 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~jsoneditor/dist/jsoneditor.min.css";
+textarea.jsoneditor-text{min-height:650px;}
+.ace_editor.ace-jsoneditor {
+    min-height: 650px;
+  }
+
+.ck-editor__editable_inline {
+    min-height: 500px !important;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
