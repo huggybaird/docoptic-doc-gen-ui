@@ -96,6 +96,22 @@ START TAB SECTION (Document, Input Sample, Preview)
         <!-- <ckeditor editorUrl="assets/ckeditor/ckeditor.js"></ckeditor> -->
       </div>
     </mat-tab>
+    <mat-tab label="Publish API">
+      <div class="example-fill-box mat-elevation-z4">
+        <p>
+        TODO: We'll allow users to publish their template at  https://docoptic.pncint.net/document/generate/pdf/<b>{{document.documentName}}</b>
+        </p><p> 
+        this api will take a "Sample Input" json object and return the generated pdf 
+        </p><p> 
+        the idea here is this needs to be <b>EASY</b> and <b>FAST</b>. No service now change requests.  No scrum team stories.  
+        The business can create a template and publish it quickly.  Within minutes they will have a functional API that anyone can utilize in production.
+        
+        </p><p> 
+        HINT: Product owners should design their "Sample Input" json data so it contains EVERY field in their system.  By doin this,
+        they can write one story for their scrum team to send all the data.  The business will be in control of which fields to use in the document. A given mnemonic may have 500+ fields and all should be available in the API json (aka Sample Input)
+        </p>     
+        </div>
+    </mat-tab>
   </mat-tab-group>
   </div>
 </div>  
