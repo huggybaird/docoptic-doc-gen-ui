@@ -177,6 +177,8 @@ export class DocumentEditorComponent implements OnInit {
         { queryParams: { selectedDocument: this.selectedDocument },
         queryParamsHandling: 'merge' });
     }
+
+    this.generateHtml();
   }
 
   openDocumentDialog(): void {
