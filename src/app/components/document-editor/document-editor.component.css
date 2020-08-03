@@ -1,4 +1,4 @@
-/* 
+
 
 .example-small-box, .example-large-box, .example-fill-box {
     display: block;
@@ -18,10 +18,12 @@
   
   .example-fill-box {
     height: 95%; 
-    width: 95%; 
+    width: 95%;
+    /* margin: 2%;  */
   }
   
-  .example-large-box { 
+  .example-large-box {
+    /* height: 650px; */
     width: 95%;
     background-color:white;
   }
@@ -42,7 +44,8 @@
   {
     margin: 0px;
     padding: 0px;
-    width: 670px; /* width: 7in; assuming pteinter is 95ppi it leaves 3/4" margin on left and right  
+    width: 670px; /* width: 7in; assuming pteinter is 95ppi it leaves 3/4" margin on left and right  */
+    /* height: 900px; */ /*or height: 9.5in;  assuming pteinter is 95ppi it leaves 3/4" margin on top and bottom  */
     clear: both;
     background-color: white;
     page-break-after: always;
@@ -55,4 +58,4 @@
         max-width: 100%;
         width: auto;
     }  
-} */  
+} */

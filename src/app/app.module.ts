@@ -11,11 +11,17 @@ import { CKEditorModule } from 'ckeditor4-angular';
 import { NgJsonEditorModule } from 'ang-jsoneditor';
 import { TextPromptDialogComponent } from './components/text-prompt-dialog/text-prompt-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { DocumentEditorComponent } from './components/document-editor/document-editor.component';
+import { AppRoutingModule } from './app-routing.module'; // Added here
+import { HttpClientModule } from '@angular/common/http';
+import { SafeHtmlPipe } from './safe-html.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TextPromptDialogComponent
+    TextPromptDialogComponent,
+    DocumentEditorComponent,
+    SafeHtmlPipe
   ],
   imports: [
     BrowserModule,
@@ -25,7 +31,9 @@ import { MatDialogModule } from '@angular/material/dialog';
     ReactiveFormsModule,
     CKEditorModule,
     NgJsonEditorModule,
-    MatDialogModule
+    MatDialogModule,
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent],

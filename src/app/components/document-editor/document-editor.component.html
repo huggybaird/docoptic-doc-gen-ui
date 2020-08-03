@@ -1,0 +1,101 @@
+<!-- ***************************************************************************************
+START HEADER SECTION (Folder, Document)
+***************************************************************************************
+-->
+ 
+<div class="example-small-box mat-elevation-z4">
+    <mat-form-field class="form-field-med">
+      <mat-label>Folder</mat-label>
+      <mat-select  (selectionChange)="onFolderChange($event)"  [(value)]="selectedFolder">
+        <mat-option *ngFor="let folder of folderList" [value]="folder">
+          {{folder}}
+        </mat-option>
+        <mat-option value="add_new" (click)="openFolderDialog()" >
+          <mat-icon aria-hidden="false" aria-label="Add New">add_circle_outline</mat-icon>
+          <b>Add New</b> 
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="form-field-large">
+      <mat-label>Document</mat-label>
+      <mat-select (selectionChange)="onDocumentChange($event)" [(value)]="selectedDocument" >
+        <mat-option *ngFor="let document of filteredDocuments"   [value]="document.documentName">
+          {{document.documentName}}
+        </mat-option>
+        <mat-option *ngIf="this.selectedFolder !== undefined" value="add_new" (click)="openDocumentDialog()" >
+          <mat-icon aria-hidden="false" aria-label="Add New">add_circle_outline</mat-icon>
+          <b>Add New</b> 
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+<!-- <h4>Folder:</h4> 
+  <mat-select   required>
+    <mat-option>--</mat-option>
+    <mat-option *ngFor="let document of documents" [value]="Folder">
+      {{document.folderName}}
+    </mat-option>
+  </mat-select> -->
+  <!-- <mat-error *ngIf="documentControl.hasError('required')">Please choose an folder</mat-error>
+  <mat-hint>{{documentControl.value?.sound}}</mat-hint> -->
+ 
+
+<!-- ***************************************************************************************
+START TAB SECTION (Document, Input Sample, Preview)
+***************************************************************************************
+-->
+<!-- #docregion dynamic-height -->
+
+<div class="example-large-box mat-elevation-z4"  *ngIf="selectedDocument !== ''  &&  document !== undefined" >
+<mat-tab-group dynamicHeight (selectedTabChange)="onTabChange($event)">
+  <!-- #enddocregion dynamic-height -->
+    <mat-tab label="Document Template">
+      <!-- <div class="example-large-box mat-elevation-z4"> -->
+        <!-- <ckeditor data="<p>Hello, world!</p>"></ckeditor> -->
+        <ckeditor *ngIf="htmlEditorVisible" editorUrl="assets/ckeditor/ckeditor.js" 
+          [(data)]="document.innerHtml" 
+          (change)="onDocumentTemplateChange($event)"
+          [config]="{ height: 525 }" ></ckeditor> 
+      <!-- </div> -->
+    </mat-tab>
+    <mat-tab label="Sample Input">
+      <div class="example-fill-box mat-elevation-z4">
+               
+        <json-editor  
+          [options]="jsonEditorOptions" [data]="document.jsonData" (change)="jsonChangeEvent()" style="height: 650px;"
+          (focusout)="saveJson()"></json-editor>
+          <!-- <json-editor  
+            [options]="jsonEditorOptions" [data]="document.jsonData" (change)="jsonChangeEvent()" style="height: 650px;"></json-editor> --> 
+      </div>
+    </mat-tab>
+    <mat-tab label="Document Preview">
+      <div  class="mat-elevation-z4">
+        <!-- <a style="margin-left:  10px;" href="#">  -->
+            <!-- <button mat-icon-button (click)="generatePdf()">
+                <mat-icon aria-hidden="false" aria-label="Generate PDF" matTooltip="Generate PDF"    >picture_as_pdf</mat-icon>
+            </button> -->
+            <mat-icon aria-hidden="false" aria-label="Generate PDF" matTooltip="Generate PDF" 
+                style= "cursor:pointer; color:#e78200;" 
+                (click)="generatePdf()"  >picture_as_pdf</mat-icon>
+        <!-- </a> --> 
+        <mat-icon aria-hidden="false" aria-label="View source HTML" matTooltip="View source HTML"
+            style= "cursor:pointer; color:#e78200; margin-left:  10px;" 
+          (click)="viewSourceHtml=true;">code</mat-icon> 
+        <mat-icon aria-hidden="false" aria-label="Preview" matTooltip="Preview"
+            style= "cursor:pointer; color:#e78200; margin-left:  10px;" 
+          (click)="viewSourceHtml=false;">preview</mat-icon> 
+        <!-- <ckeditor [(ngModel)]="textEditormodel.innerHtml"></ckeditor> -->
+        <!-- <ckeditor editorUrl="assets/ckeditor/ckeditor.js"></ckeditor> -->
+      </div>
+      <div>&nbsp;</div>
+      <div class="print-to-8-5x11-letter">
+        <div  [innerHtml]="previewHtml | safeHtml" *ngIf="!viewSourceHtml"></div>
+        <div   *ngIf="viewSourceHtml">{{previewHtml}}</div>
+        <!-- <ckeditor [(ngModel)]="textEditormodel.innerHtml"></ckeditor> -->
+        <!-- <ckeditor editorUrl="assets/ckeditor/ckeditor.js"></ckeditor> -->
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+  </div>
+</div>  
